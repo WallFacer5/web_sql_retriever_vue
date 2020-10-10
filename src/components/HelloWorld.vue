@@ -9,7 +9,7 @@
       <li>
       <p>DBMS type: </p>
       </li>
-      <input type="radio" id="rds_radio" value="RDS" v-model="picked">
+      <input type="radio" id="rds_radio" value="rds" v-model="picked">
       <label for="rds_radio">RDS</label>
       <input type="radio" id="redshift_radio" value="Redshift" v-model="picked">
       <label for="redshift_radio">Redshift</label>
@@ -58,7 +58,7 @@ export default {
     return {
       msg: 'Welcome to the web sql retriever of Group 9',
       query: '',
-      picked: 'RDS',
+      picked: 'rds',
       columns: [],
       result: [],
       timeCost: '',
