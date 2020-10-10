@@ -11,7 +11,7 @@
       </li>
       <input type="radio" id="rds_radio" value="rds" v-model="picked">
       <label for="rds_radio">RDS</label>
-      <input type="radio" id="redshift_radio" value="Redshift" v-model="picked">
+      <input type="radio" id="redshift_radio" value="redshift" v-model="picked">
       <label for="redshift_radio">Redshift</label>
       <br>
     </ul>
