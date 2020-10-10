@@ -19,12 +19,20 @@
     <button v-on:click="queryFunc">Query now!</button>
     </ul>
     <ul>
-
+    <br>
     <el-card class="result-card" style="width: 60%; margin: auto; font-size: 20px;">
-      <div slot="header" class="result-card-header">
-        <span>Query result</span>
-      </div>
-      <el-table :data="result" stripe border style="width: 100%; margin: auto; font-size: 18px;">
+      <ul>
+        <div slot="header" class="result-card-header">
+          <span>Query result</span>
+        </div>
+        <li>
+        <label style="position: relative; left: 250px;">Time cost: </label>
+        </li>
+        <li>
+        <p style="background-color=#BBBBBB; position: relative; left: 230px;">{{timeCost}}</p>
+        </li>
+      </ul>
+      <el-table :data="result" stripe border style="width: 100%; margin: auto; font-size: 18px;" :header-cell-style="tableHeaderStyle">
         <div v-for="(item, i) in columns" :key="i">
           <el-table-column :label="item" :render-header="linefeed" :prop="item" :index="i">
           </el-table-column>
@@ -33,7 +41,8 @@
     </el-card>
 
     </ul>
-
+    <br>
+    <el-divider></el-divider>
     <br>
     <h2>Group members</h2>
     <ul>
@@ -73,6 +82,9 @@ export default {
       let size = 12
       column.minWidth = number * size
       return h('div', {class: 'table-head', style: {width: '100%'}}, [column.label])
+    },
+    tableHeaderStyle ({ row, column, rouIndex, columnIndex }) {
+      return 'background-color: #FAFAFA; color: #333333;'
     },
     queryFunc: function () {
       function mapLen (str) {
