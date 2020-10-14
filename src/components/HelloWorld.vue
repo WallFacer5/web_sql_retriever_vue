@@ -83,7 +83,7 @@ export default {
       column.minWidth = number * size
       return h('div', {class: 'table-head', style: {width: '100%'}}, [column.label])
     },
-    tableHeaderStyle ({ row, column, rouIndex, columnIndex }) {
+    tableHeaderStyle ({ row, column, rowIndex, columnIndex }) {
       return 'background-color: #FAFAFA; color: #333333;'
     },
     queryFunc: function () {
