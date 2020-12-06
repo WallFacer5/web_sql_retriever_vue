@@ -71,12 +71,39 @@ export default {
       columns: [],
       result: [],
       timeCost: '',
-      maxColLens: []
+      maxColLens: [],
+      runTime: 0
     }
   },
   created () {
+    setInterval(() => {
+      setTimeout(this.syncResults, 0)
+    }, 5000)
   },
   methods: {
+    syncResults () {
+      function mapLen (str) {
+        return str.length
+      }
+      axios.get('backend/sql/sync_results', {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      }).then(res => {
+        this.columns = res.data.data.columns
+        this.result = res.data.data.result
+        this.timeCost = res.data.data.time_cost
+        this.query = res.data.data.query
+        this.maxColLens = this.columns.map(mapLen)
+        for (let r in this.result) {
+          for (let c in this.columns) {
+            if (this.result[r][this.columns[c]].length > this.maxColLens[c]) {
+              this.maxColLens[c] = this.result[r][this.columns[c]].length
+            }
+          }
+        }
+      })
+    },
     linefeed (h, {column, index}) {
       let number = this.maxColLens[column.index]
       let size = 12
